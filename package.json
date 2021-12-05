@@ -1,0 +1,22 @@
+{
+  "name": "foodie-catalog",
+  "version": "1.0.0",
+  "description": "university project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zaffino/Foodie-catalog.git"
+  },
+  "author": "Cosimo Tobia Zaffino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zaffino/Foodie-catalog/issues"
+  },
+  "homepage": "https://github.com/Zaffino/Foodie-catalog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
