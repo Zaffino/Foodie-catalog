@@ -1,0 +1,37 @@
+{
+	"menu": [{
+			"menuID": 0,
+			"menuType": "take away",
+			"menuList": [{
+					"piattoID": 0,
+					"name": "vellutata della mensa, gg ez sei avvelenato"
+				},
+				{
+					"piattoID": 1,
+					"name": "pizza con ananas"
+				}
+			]
+		},
+		{
+			"menuID": 1,
+			"menuType": "table",
+			"menuList": [{
+					"piattoID": 0,
+					"name": "vellutata della mensa, gg ez sei avvelenato"
+				},
+				{
+					"piattoID": 1,
+					"name": "pasta al sugo di sputo dello chef"
+				},
+				{
+					"piattoID": 2,
+					"name": "pizza"
+				},
+				{
+					"piattoID": 3,
+					"name": "fenicottero"
+				}
+			]
+		}
+	]
+}

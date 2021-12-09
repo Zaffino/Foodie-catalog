@@ -1,0 +1,19 @@
+{
+  "workers" : [
+    {
+      "ID": 0,
+      "name": "scimmia maggiordomo",
+      "password": "hashpass1"
+    },
+    {
+      "ID": 1,
+      "name": "zebra a strisce nere",
+      "password": "hashpass2"
+    },
+    {
+      "ID": 2,
+      "name": "zebra a strisce bianche",
+      "password": "hashpass1"
+    }
+  ]
+}
