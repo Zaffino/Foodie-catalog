@@ -4,8 +4,14 @@
   padding: 2%;
 }
 
-.title{
-  
+.stickyBot {
+  position: fixed;
+  bottom: 0;
+  width: 100%
+}
+
+.center_text {
+  text-align: center;
 }
 
 .button {
@@ -17,4 +23,9 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.form{
+  border: 3px solid burlywood;
+  background-color: whitesmoke;
 }

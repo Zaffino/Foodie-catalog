@@ -8,3 +8,6 @@ function fun() {
   menu.append(food) //aggiungi food al documento html, il particolare dentro il <div> menu 
 }
 
+function gotoConfirmOrdine(params) {
+  window.location.pathname = '/ui/confirmOrdine.html'
+}
