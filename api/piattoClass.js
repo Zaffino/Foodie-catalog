@@ -1,6 +1,6 @@
 class Piatto {
     constructor (name){
-        this.name(); //definizione di questo attributo ancora incerto, necessità di avere accesso al .json con la strutturazione dei dati per implementare correttamente questa parte
+        this.name = name; //definizione di questo attributo ancora incerto, necessità di avere accesso al .json con la strutturazione dei dati per implementare correttamente questa parte
     } // in ogni caso name -> identificativo (per il momento)
     addPrezzo (prezzo){
         this.prezzo = prezzo; // prezzo è un float
