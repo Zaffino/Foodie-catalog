@@ -4,11 +4,17 @@
 			"menuType": "take away",
 			"menuList": [{
 					"piattoID": 0,
-					"name": "vellutata della mensa, gg ez sei avvelenato"
+					"name": "vellutata misteriosa",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "vellutata della mensa, gg ez sei avvelenato"
 				},
 				{
 					"piattoID": 1,
-					"name": "pizza con ananas"
+					"name": "pizza con ananas",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "non ancora riconosciuta ufficialmente come pizza"
 				}
 			]
 		},
@@ -17,19 +23,31 @@
 			"menuType": "table",
 			"menuList": [{
 					"piattoID": 0,
-					"name": "vellutata della mensa, gg ez sei avvelenato"
+					"name": "vellutata misteriosa",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "vellutata della mensa, gg ez sei avvelenato"
 				},
 				{
 					"piattoID": 1,
-					"name": "pasta al sugo di sputo dello chef"
+					"name": "pasta al sugo di sputo dello chef",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "5 stelle sammontana"
 				},
 				{
 					"piattoID": 2,
-					"name": "pizza"
+					"name": "pizza",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "no, non è una pizza bianca"
 				},
 				{
 					"piattoID": 3,
-					"name": "fenicottero"
+					"name": "fenicottero",
+					"prezzo": 10.50,
+					"image":"example.png",
+					"descrizione": "l'unico piatto rosa a nostra disposizione. Servito freddo."
 				}
 			]
 		}

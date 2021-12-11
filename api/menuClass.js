@@ -1,4 +1,9 @@
 class Menu {
+    constructor(id, type, list){
+        this.id = id;
+        this.type = type;
+        this.piatti = list ;
+    }
     getType (){
         return this.type; 
     }

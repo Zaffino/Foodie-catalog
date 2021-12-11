@@ -1,14 +1,17 @@
 class Piatto {
-    constructor (name){
-        this.name = name; //definizione di questo attributo ancora incerto, necessità di avere accesso al .json con la strutturazione dei dati per implementare correttamente questa parte
-    } // in ogni caso name -> identificativo (per il momento)
-    addPrezzo (prezzo){
+    constructor (id){
+        this.id=id;
+    }
+    setName(name){
+        this.name = name; // name è una stringa
+    }
+    setPrezzo (prezzo){
         this.prezzo = prezzo; // prezzo è un float
     }
-    addImage (image){
+    setImage (image){
         this.image = image; // formato ancora indeterminato, ma dev'essere non l'immagine stessa, ma il mezzo attraverso il quale l'interfaccia grafica può "fetchare" l'immagine giusta
     }
-    addDescription (description){
+    setDescription (description){
         this.descrizione = description; // descrizione è una stringa
     }
     getPrezzo (){
