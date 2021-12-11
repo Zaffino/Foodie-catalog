@@ -9,7 +9,7 @@ class Notifica {
 //dispositivi collegati alla rete
 class NotificaRitardo extends Notifica {
     constructor(tempo){
-        testo = "Testo automatico delle notifiche di ritardo dell'ordine";
+        this.testo = "Testo automatico delle notifiche di ritardo dell'ordine";
         this.tempo = tempo;
     }
 }
