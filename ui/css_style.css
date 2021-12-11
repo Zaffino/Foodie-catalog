@@ -29,3 +29,10 @@
   border: 3px solid burlywood;
   background-color: whitesmoke;
 }
+
+.icon{
+  width: 10%;
+  height: 5%;
+  min-width: 200px;
+  min-height: 100px;
+}
