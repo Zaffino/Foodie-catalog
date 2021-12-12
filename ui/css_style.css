@@ -1,3 +1,9 @@
+.roundImg {
+  border-radius: 50%;
+}
+
+
+
 .center {
   margin: auto;
   width: 75%;
@@ -31,8 +37,9 @@
 }
 
 .icon{
-  width: 10%;
-  height: 5%;
-  min-width: 200px;
-  min-height: 100px;
+  width: 20%;
+  height: 10%;
+  min-width: 50px;
+  min-height: 25px;
 }
+

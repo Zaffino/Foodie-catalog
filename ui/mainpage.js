@@ -1,9 +1,9 @@
 
-function btn1(params) {
+function guest(params) {
   //console.log(window.location)
   window.location.pathname = '/ui/menu.html'
 }
 
-function btn2(params) {
-  
+function login(params) {
+  window.location.pathname = '/ui/login.html'
 }
