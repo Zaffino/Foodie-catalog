@@ -2,6 +2,13 @@ class Piatto {
     constructor (id){
         this.id=id;
     }
+    constructor (id, name, prezzo, image, description){
+        this.id=id;
+        this.name=name;
+        this.prezzo=prezzo;
+        this.image=image;
+        this.descrizione = description;
+    }
     setName(name){
         this.name = name; // name è una stringa
     }
