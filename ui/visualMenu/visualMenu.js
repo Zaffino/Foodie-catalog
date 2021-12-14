@@ -43,6 +43,9 @@ request.onload = function (){
  
 
 
-
-
 page.appendChild(title);
+
+
+function gotoConfirmOrdine(){
+  window.location.pathname = '/ui/confirmOrdine/confirmOrdine.html'
+}
