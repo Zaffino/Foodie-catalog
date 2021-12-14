@@ -12,6 +12,8 @@ function gotoConfirmOrdine(params) {
   window.location.pathname = '/ui/confirmOrdine.html'
 }*/
 
+const res = require('express/lib/response');
+
 require ('api/menuClass.js');
 
 const page = document.getElementById('root');
@@ -33,13 +35,14 @@ request.onload = function (){
   console.log(data);
   if (request.status >= 200 && request.status < 400){
     //inserire visualizzazione menu
-  } ;
-} else {
-    //inserire error handling
-}  
+  } 
+  else {
+    
+  } 
+} 
+ 
 
 
-}
 
 
 page.appendChild(title);

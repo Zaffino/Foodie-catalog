@@ -11,5 +11,5 @@ function showContent(params) {
 
 
 function pagaOnline(params) {
-  window.location.pathname = '/ui/pagamento.html'
+  window.location.pathname = '/ui/pagamento/pagamento.html'
 }
