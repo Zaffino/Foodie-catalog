@@ -12,6 +12,7 @@ function gotoConfirmOrdine(params) {
   window.location.pathname = '/ui/confirmOrdine.html'
 }*/
 
+var table = document.createElement('table')
 
 
 var selected_menu = "Take away";
@@ -21,6 +22,9 @@ function changeSelected (new_selection){
   selected_menu = new_selection;
   console.log(new_selection);
 }
+
+
+
 
 function fun() {
   
@@ -44,26 +48,23 @@ function fun() {
   selectionMenu.appendChild(buttonTable);
 
 
-  const table = document.createElement('table');
-
-  var request = new XMLHttpRequest;
-  request.open('GET', 'http://localhost:8080/api/menu.json', true);
-  request.onload = function (){
-
-  var data = this.response;
-  console.log(data);
-  if (request.status >= 200 && request.status < 400){
-    for (menu in data){
-      console.log(menu);
+  function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
     }
-  } 
-  else {
-    console.log(" error ");
-  } 
-  request.send();
-}
-
-table.innerText = request.status;
+    rawFile.send(null);
+  }
+  
+  //usage:
+  readTextFile("../../api/jsonFiles/menu.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data);
+  });
 
 
 page.appendChild(title);
@@ -72,6 +73,7 @@ page.appendChild(table);
 
   
 }
+
 
 
 function gotoConfirmOrdine(){
