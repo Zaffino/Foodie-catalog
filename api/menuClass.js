@@ -30,35 +30,30 @@ class MenuModificabile extends Menu {
     }
 }
 
-// implementazione conversioni da json a oggetti della classe
 
 
 
-var bodyParser = require("body-parser");
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-/*app.listen(49146, () => {
-  console.log("APIs Running");
 
 
-});*/ // da capire prima di inserire
 
-app.get('/api/jsonFiles', (request,response)=>{
-    var data = fs.readFileSync('menu.json');
-    var myObject = JSON.parse(data);
 
-    var myData = [];
 
-    for (var i=0; i<myObject.lenght();i++){
-        var temPlate = myObject.menuList;
-        var piatti = [];
-        for (var j=0; j<temPlate.lenght; j++){
-            piatti[j] = Piatto(temPlate[j].piattoID, temPlate[j].name, temPlate[j].prezzo,temPlate[j].image, temPlate[j].description);
-        }
-        myData[i] = piatti;
-    }
 
-    response.send(myData);
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

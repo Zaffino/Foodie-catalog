@@ -12,8 +12,6 @@ function gotoConfirmOrdine(params) {
   window.location.pathname = '/ui/confirmOrdine.html'
 }*/
 
-var index = require('../../api/index.js');
-
 
 
 var selected_menu = "Take away";
@@ -49,7 +47,7 @@ function fun() {
   const table = document.createElement('table');
 
   var request = new XMLHttpRequest;
-  request.open('GET', 'http://localhost:8080/api/menuClass.js', true);
+  request.open('GET', 'http://localhost:8080/api/menu.json', true);
   request.onload = function (){
 
   var data = this.response;

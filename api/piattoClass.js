@@ -1,7 +1,4 @@
 class Piatto {
-    constructor (id){
-        this.id=id;
-    }
     constructor (id, name, prezzo, image, description){
         this.id=id;
         this.name=name;
