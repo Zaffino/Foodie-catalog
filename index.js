@@ -21,7 +21,7 @@ app.listen(49146, () => {
 
 });
 
-app.get('/api/jsonFiles', (request,response)=>{
+app.get('/api', (request,response)=>{
     var data = fs.readFileSync('menu.json');
     var myObject = JSON.parse(data);
 
@@ -63,7 +63,7 @@ app.listen(49146, () => {
 });
 
 // GET API per i prodotti
-app.get('/api/jsonFiles/menu.json', (request, response) => {
+app.get('/api/menu.json', (request, response) => {
     var data = fs.readFileSync('prodotti.json');
     var myObject = JSON.parse(data);
 

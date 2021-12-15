@@ -61,9 +61,10 @@ function fun() {
   }
   
   //usage:
-  readTextFile("../../api/jsonFiles/menu.json", function(text){
+  readTextFile("../../api/menu.json", function(text){
     var data = JSON.parse(text);
     console.log(data);
+    table.innerText = data;
   });
 
 
