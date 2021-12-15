@@ -1,4 +1,3 @@
-require('piattoClass.js');
 
 class Menu {
     constructor(id, type, list){
@@ -14,7 +13,7 @@ class Menu {
     }
 }
 
-class MenuModificabile extends menu {
+class MenuModificabile extends Menu {
     constructor(id, type){
         this.id = id; // identificativo del menu
         this.type = type; // tipo del menu, dovrebbe variare tra "take away" e "tavolo"
@@ -33,11 +32,7 @@ class MenuModificabile extends menu {
 
 // implementazione conversioni da json a oggetti della classe
 
-var Express = require ("express");
-var app = Express ();
-var fs = require ("fs");
-var cors = require('cors')
-app.use(cors())
+
 
 var bodyParser = require("body-parser");
 
