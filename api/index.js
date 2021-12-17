@@ -38,7 +38,7 @@ app.get('/api/menu', (request, response) => {
 app.post('/api/menu', (request,response)=>{
     console.log('API POST MENU');
 
-    var data = fs.readFileSync('menu.js');
+    var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -69,7 +69,7 @@ app.post('/api/menu', (request,response)=>{
 app.post('/api/piatto/:PiattoID', (request, response) =>{
     console.log('API POST PIATTO');
 
-    var data = fs.readFileSync('menu.js');
+    var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -107,7 +107,7 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
 app.delete('/api/menu/:MenuID', (request, response) => {
     console.log('API DELETE MENU');
 
-    var data = fs.readFileSync('menu.js');
+    var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
 
     for(let[i,menu] of myObject.menu.entries()){
@@ -126,7 +126,7 @@ app.delete('/api/menu/:MenuID', (request, response) => {
 app.delete('/api/piatto/:PiattoID', (request,response) => {
     console.log('API DELETE PIATTO');
 
-    var data = fs.readFileSync('menu.js');
+    var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
 
     for(let[i,menu] of myObject.menu.entries()){
@@ -146,7 +146,7 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
 app.get('/api/dipendenti', (request, response) => {
     console.log('API GET DIPENDENTI');
 
-    var data = fs.readFileSync('dipendenti.json');
+    var data = fs.readFileSync('.api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     var myResponse = -1;
@@ -164,7 +164,7 @@ app.get('/api/dipendenti', (request, response) => {
 app.post('/api/dipendenti',(request,response)=>{
     console.log('API POST DIPENTENTI');
 
-    var data = fs.readFileSync('dipendenti.json');
+    var data = fs.readFileSync('.api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -194,7 +194,7 @@ app.post('/api/dipendenti',(request,response)=>{
 app.delete('/api/dipendenti',(request, response) => {
     console.log('API DELETE WORKERS');
 
-    var data = fs.readFileSync('dipendenti.js');
+    var data = fs.readFileSync('.api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     for(let[i,dipendente] of myObject.dipendenti.entries()){
