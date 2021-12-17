@@ -65,6 +65,44 @@ app.post('/api/menu', (request,response)=>{
     response.json('Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')');
 });
 
+// API di POST per aggiungere un piatto ad un menu in menu.json
+app.post('/api/piatto/:PiattoID', (request, response) =>{
+    console.log('API POST PIATTO');
+
+    var data = fs.readFileSync('menu.js');
+    var myObject = JSON.parse(data);
+
+    var maxID=-1;
+
+    for(let[i,menu] of myObject.menu.entries()){
+        if(menu.menuID == request.params.MenuID){
+            for(let[j,piatto] in myObject.menu[i].MenuList.entries()){
+                if(maxID<piatto.piattoID){
+                    maxID = piatto.piattoID;
+                }
+            }
+        }
+    }
+
+    let newPiatto = {
+        "piattoID": maxID +1,
+        "name": request.body['name'],
+        "prezzo": request.body['prezzo'],
+        "image": request.body['image'],
+        "descrizione": request.body['descrizione']
+    };
+
+    myObject.menu.push(newPiatto);
+
+    var newData = JSON.stringify(myObject);
+    fs.writeFile('menu.json', newData, err => {
+        if (err) throw err; 
+    });
+
+    response.json('Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')');
+
+})
+
 // API di DELETE per togliere un elemento dal menu.json
 app.delete('/api/menu/:MenuID', (request, response) => {
     console.log('API DELETE MENU');
@@ -85,7 +123,7 @@ app.delete('/api/menu/:MenuID', (request, response) => {
     response.json('Eliminazione effetuata: ('+ myObject.menu.lenght + ')');
 });
 
-app.delete('/api/menu/:PiattoID', (request,response) => {
+app.delete('/api/piatto/:PiattoID', (request,response) => {
     console.log('API DELETE PIATTO');
 
     var data = fs.readFileSync('menu.js');
