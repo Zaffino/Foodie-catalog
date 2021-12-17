@@ -25,10 +25,13 @@ app.listen(49146, () => {
 app.get('/api/menu', (request, response) => {
 
     console.log('API GET MENU');
-    var data = fs.readFileSync('menu.json');
+    var data = fs.readFileSync('./api/menu.json'); //era necessario specificare la cartella del file json
+    
     var myObject = JSON.parse(data);
     response.send(myObject);
+    
 
+    
 });
 
 // API di POST per aggiungere un elemento al menu.json
@@ -168,3 +171,5 @@ app.delete('/api/dipendenti',(request, response) => {
 
     response.json('Eliminazione effetuata: ('+ myObject.workers.lenght + ')');
 })
+
+module.exports = app;
