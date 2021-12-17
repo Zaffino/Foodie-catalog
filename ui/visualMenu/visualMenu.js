@@ -1,82 +1,78 @@
-/*function fun() {
-  var menu = document.getElementById("menu") //scegli dove verrà inserito il nodo (elemento) food
-  //menu è l'id di un <div>
-  console.log("hi") //solo per vedere se funziona
-  var food = document.createElement("p");   // Crea un elemento di tipo <p>
-  food.setAttribute("style", "color : blue;");
-  food.append("ciao") //aggiungo il testo
-  menu.append(food) //aggiungi food al documento html, il particolare dentro il <div> menu 
-}
-
-function gotoConfirmOrdine(params) {
-  window.location.pathname = '/ui/confirmOrdine.html'
-}*/
-
-var table = document.createElement('table')
+const app = document.getElementById('root');
 
 
-var selected_menu = "Take away";
-selected_menu = "Table";
-
-function changeSelected (new_selection){
-  selected_menu = new_selection;
-  console.log(new_selection);
-}
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
 
 
 
-
-function fun() {
-  
-  var page = document.getElementById('root');
-  page.setAttribute('style' , 'text-align:center');
-
-  const title = document.createElement('div');
-  const testoTitolo = document.createElement('h1');
-  testoTitolo.textContent = "Foodie Catalog";
-  title.appendChild(testoTitolo);
+const title = document.createElement('div');
+const testoTitolo = document.createElement('h1');
+testoTitolo.textContent = "Foodie Catalog";
+title.appendChild(testoTitolo);
 
 
-  const selectionMenu = document.createElement('div');
-  const buttonTake = document.createElement('button');
-  const buttonTable = document.createElement('button');
-
-  buttonTake.setAttribute('onClick', 'changeSelected( "Take away" )');
-  buttonTable.setAttribute('onClick', 'changeSelected( "Table" )');
-
-  selectionMenu.appendChild(buttonTake);
-  selectionMenu.appendChild(buttonTable);
+var request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:49146/api/menu', true);
+request.onload = function () {
 
 
-  function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
+    var data = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 400) {
+        data.menu.forEach(menuItem => {
+            const card = document.createElement('div');
+            card.setAttribute('class', 'card');
+
+
+            const h1 = document.createElement('h1');
+            h1.textContent = menuItem.menuType;
+
+            const divPiatti = document.createElement('div');
+
+            menuItem.menuList.forEach(piatto => {
+                const cardPiatto = document.createElement('div');
+                cardPiatto.setAttribute('class', 'card');
+
+                const PiattoName = document.createElement('h2');
+                PiattoName.textContent = `${piatto.name}`
+
+                const imgPiatto = document.createElement('img');
+                imgPiatto.src = `${piatto.image}`;
+                cardPiatto.appendChild(imgPiatto);
+
+                const PiattoPrezzo = document.createElement('h3');
+                PiattoPrezzo.textContent = `${piatto.prezzo}` + '\u20AC';
+
+                const PiattoDescrizione = document.createElement('p');
+                PiattoDescrizione.textContent = `${piatto.descrizione}`;
+
+
+                cardPiatto.appendChild(PiattoName);
+                cardPiatto.appendChild(PiattoPrezzo);
+                cardPiatto.appendChild(PiattoDescrizione);
+                divPiatti.appendChild(cardPiatto);
+
+            })
+
+            container.appendChild(card);
+            card.appendChild(h1);
+            card.appendChild(divPiatti);
+
+        });
+    } else {
+        const errorMessage = document.createElement('marquee');
+        errorMessage.textContent = `THE API IS NOT WORKING!`;
+        app.appendChild(errorMessage);
     }
-    rawFile.send(null);
-  }
-  
-  //usage:
-  readTextFile("../../api/menu.json", function(text){
-    var data = JSON.parse(text);
-    console.log(data);
-    table.innerText = data;
-  });
-
-
-page.appendChild(title);
-page.appendChild(selectionMenu);
-page.appendChild(table);
-
-  
 }
 
+request.send();
+
+app.appendChild(title);
+app.appendChild(container);
 
 
-function gotoConfirmOrdine(){
-  window.location.pathname = '/ui/confirmOrdine/confirmOrdine.html'
-}
+
+
+
+
