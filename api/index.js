@@ -35,7 +35,7 @@ app.get('/api/menu', (request, response) => {
 });
 
 // API di POST per aggiungere un elemento al menu.json
-app.post('/api/menu', (request,response)=>{
+app.post('/api/menu/:MenuID', (request,response)=>{
     console.log('API POST MENU');
 
     var data = fs.readFileSync('./api/menu.json');
@@ -75,10 +75,10 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
     var maxID=-1;
 
     for(let[i,menu] of myObject.menu.entries()){
-        if(menu.menuID == request.params.MenuID){
-            for(let[j,piatto] in myObject.menu[i].MenuList.entries()){
-                if(maxID<piatto.piattoID){
-                    maxID = piatto.piattoID;
+        if(myObject.menu[i].menuID == request.params.MenuID){
+            for(let[j,piatto] in myObject.menu[i].menuList.entries()){
+                if(maxID < myObject.menu[i].menuList[j].piattoID){
+                    maxID = myObject.menu[i].menuList[j].piattoID;
                 }
             }
         }
