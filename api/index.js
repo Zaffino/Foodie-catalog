@@ -44,25 +44,25 @@ app.post('/api/menu', (request,response)=>{
     var maxID=-1;
 
     for(let[i,menu] of myObject.menu.entries()){
-        if(menu.MenuID>maxID){
-            maxID = menu.MenuID;
+        if(myObject.menu[i].menuID>maxID){
+            maxID = myObject.menu[i].menuID;
         }
     }
 
     let newMenu = {
-        "MenuID": maxID +1,
-        "MenuType": request.body['MenuType'],
-        "MenuList": request.body['MenuList']
+        "menuID": maxID +1,
+        "menuType": request.body['menuType'],
+        "menuList": request.body['menuList']
     };
 
     myObject.menu.push(newMenu);
 
     var newData = JSON.stringify(myObject);
-    fs.writeFile('menu.json', newData, err => {
+    fs.writeFile('./api/menu.json', newData, err => {
         if (err) throw err; 
     });
-
-    response.json('Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')');
+    //'Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')'
+    response.json(newMenu);
 });
 
 // API di POST per aggiungere un piatto ad un menu in menu.json
