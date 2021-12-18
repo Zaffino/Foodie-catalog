@@ -210,4 +210,25 @@ app.delete('/api/dipendenti',(request, response) => {
     response.json('Eliminazione effetuata: ('+ myObject.workers.lenght + ')');
 })
 
+
+
+const swaggerJsDoc = require ('swagger-jsdoc');
+const swaggerUi = require ('swagger-ui-express');
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: "Foodie Catalog API",
+            contact: {
+                name:"G09"
+            },
+            servers: ["http://localhost:49146/"]
+        }
+    },
+    apis: ["index.js"]
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 module.exports = app;

@@ -22,7 +22,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongodb": "^4.2.2",
-    "tap-spec": "^5.0.0"
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0",
+    "tap-spec": "^2.2.2"
   },
   "devDependencies": {
     "supertest": "^6.1.6",
