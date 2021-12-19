@@ -58,13 +58,13 @@ test('DELETE dipendenti', (assert) => {
 
 
 
-/*
+
 
 
 
 //da capire il delete
 test('DELETE menu', (assert) => {
-    var DELmenuID = '1';
+    var DELmenuID = {'menuID' : 1};
     request(app).delete('/api/menu/:MenuID')
     .send(DELmenuID)
     .expect(200)
@@ -78,7 +78,7 @@ test('DELETE menu', (assert) => {
     })
 })
 
-
+/*
 
 //da capire il delete
 test('DELETE piatto', (assert) => {

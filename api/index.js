@@ -62,7 +62,7 @@ app.post('/api/menu/:MenuID', (request,response)=>{
         if (err) throw err; 
     });
     //'Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')'
-    response.json(newMenu);
+    response.json('elemento aggiunto');
 });
 
 // API di POST per aggiungere un piatto ad un menu in menu.json
@@ -109,18 +109,23 @@ app.delete('/api/menu/:MenuID', (request, response) => {
 
     var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
+    var toRespond ;
+
+    toCheckID = request.body['menuID'];
 
     for(let[i,menu] of myObject.menu.entries()){
-        if(menu.MenuID == request.params.MenuID){
+        if(myObject.menu[i].menuID == toCheckID){
             myObject.menu.splice(i,1);
+            toRespond = i;
         }
     }
+
     var newData = JSON.stringify(myObject);
-    fs.writeFile('menu.json', newData, err => {
+    fs.writeFile('./api/menu.json', newData, err => {
         if (err) throw err; 
     });
 
-    response.json('Eliminazione effetuata: ('+ myObject.menu.lenght + ')');
+    response.json('Eliminazione effetuata: ()'); 
 });
 
 app.delete('/api/piatto/:PiattoID', (request,response) => {
