@@ -74,8 +74,10 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
 
     var maxID=-1;
 
+    var requestID = request.body['menuID'];
+
     for(let[i,menu] of myObject.menu.entries()){
-        if(myObject.menu[i].menuID == request.params.MenuID){
+        if(myObject.menu[i].menuID == requestID){
             for(let[j,piatto] in myObject.menu[i].menuList.entries()){
                 if(maxID < myObject.menu[i].menuList[j].piattoID){
                     maxID = myObject.menu[i].menuList[j].piattoID;
@@ -109,14 +111,12 @@ app.delete('/api/menu/:MenuID', (request, response) => {
 
     var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
-    var toRespond ;
 
     toCheckID = request.body['menuID'];
 
     for(let[i,menu] of myObject.menu.entries()){
         if(myObject.menu[i].menuID == toCheckID){
             myObject.menu.splice(i,1);
-            toRespond = i;
         }
     }
 
@@ -134,11 +134,14 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
     var data = fs.readFileSync('./api/menu.json');
     var myObject = JSON.parse(data);
 
+    var menuRequest = request.body['menuID']; 
+    var piattoRequest = request.bosy['piattoID'];
+
     for(let[i,menu] of myObject.menu.entries()){
-        if(menu.MenuID == request.params.MenuID){
-            for(let[j,piatto] of myObject.menu.MenuList.entries()){
-                if(piatto.PiattoID == request.params.PiattoID){
-                    myObject.menu[i].MenuList.splice(j,1);
+        if(myObject.menu[i].menuID == menuRequest){
+            for(let[j,piatto] in myObject.menu[i].menuList.entries()){
+                if(myObject.menu[i].menuList[j].piattoID == piattoRequest){
+                    myObject.menu[i].menuList.splice(j,1);
                 }
             }
         }
@@ -156,8 +159,11 @@ app.get('/api/dipendenti', (request, response) => {
 
     var myResponse = -1;
 
+    var requestName = request.body['name'];
+    var requestPassword = request.body['password'];
+
     for(let[i,dipendente] of myObject.workers.entries()){
-        if((dipendente.name == request.params.name)&&(dipendente.password == request.params.password)){
+        if((dipendente.name == requestName)&&(dipendente.password == requestPassword)){
             myResponse = dipendente.ID;
         }
     }
@@ -175,7 +181,7 @@ app.post('/api/dipendenti',(request,response)=>{
     var maxID=-1;
 
     for(let[i,dipendente] of myObject.workers.entries()){
-        if(dipendente.ID>maxID){
+        if(myObject.workers[i].ID>maxID){
             maxID = dipendente.MenuID;
         }
     }
@@ -202,8 +208,10 @@ app.delete('/api/dipendenti',(request, response) => {
     var data = fs.readFileSync('./api/dipendenti.json');
     var myObject = JSON.parse(data);
 
-    for(let[i,dipendente] of myObject.dipendenti.entries()){
-        if(dipendente.ID == request.params.ID){
+    var requestID = request.body['ID'];
+
+    for(let[i,dipendente] of myObject.workers.entries()){
+        if(myObject.workers[i].ID == requestID){
             myObject.workers.splice(i,1);
         }
     }
