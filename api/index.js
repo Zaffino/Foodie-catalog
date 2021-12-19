@@ -146,7 +146,7 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
 app.get('/api/dipendenti', (request, response) => {
     console.log('API GET DIPENDENTI');
 
-    var data = fs.readFileSync('.api/dipendenti.json');
+    var data = fs.readFileSync('./api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     var myResponse = -1;
@@ -164,7 +164,7 @@ app.get('/api/dipendenti', (request, response) => {
 app.post('/api/dipendenti',(request,response)=>{
     console.log('API POST DIPENTENTI');
 
-    var data = fs.readFileSync('.api/dipendenti.json');
+    var data = fs.readFileSync('./api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -194,7 +194,7 @@ app.post('/api/dipendenti',(request,response)=>{
 app.delete('/api/dipendenti',(request, response) => {
     console.log('API DELETE WORKERS');
 
-    var data = fs.readFileSync('.api/dipendenti.json');
+    var data = fs.readFileSync('./api/dipendenti.json');
     var myObject = JSON.parse(data);
 
     for(let[i,dipendente] of myObject.dipendenti.entries()){
