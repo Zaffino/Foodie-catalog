@@ -93,7 +93,7 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
         "image": request.body['image'],
         "descrizione": request.body['descrizione']
     };
-
+    
     myObject.menu.push(newPiatto);
 
     var newData = JSON.stringify(myObject);
@@ -168,7 +168,7 @@ app.get('/api/dipendenti', (request, response) => {
         }
     }
 
-    response.send(myResponse);
+    response.send(myResponse.toString());
 });
 
 // API di POST per l'aggiunta di un dipendente

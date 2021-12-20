@@ -21,27 +21,12 @@ test('POST piatto' , (assert) => {
 */
 
 
-test('GET dipendenti', (assert) => {
-    request(app)
-        .get('/api/dipendenti')
-        //.expect('Content-Type', /json/)
-        .expect(200)
-        .end((err, res) => {
-            
-            assert.error(err, 'No error');
-            //assert.same(res.body, expectedRes, 'res.body as expected');
-            assert.end();
-        });
-        
-  });
 
 
-/*
+test('POST piatto', (assert) => {
 
-test('DELETE dipendenti', (assert) => {
-
-    request(app).delete('/api/menu/:MenuID')
-    .send({'MenuID' : 0})
+    request(app).delete('/api/piatto/:PiattoID')
+    .send({'menuID' : 1, 'name' : 'porridge', 'prezzo' : 6.75, 'image' : './ui/image/sbocco.png', 'descrizione' : 'fatto dagli inglesi'})
     .expect(200)
     .end((err,res) =>{
         assert.error(err,'no errors')
@@ -49,34 +34,6 @@ test('DELETE dipendenti', (assert) => {
     })
 })
 
-  */
-
-
-
-
-
-
-
-
-
-
-
-
-//da capire il delete
-test('DELETE menu', (assert) => {
-    var DELmenuID = {'menuID' : 1};
-    request(app).delete('/api/menu/:MenuID')
-    .send(DELmenuID)
-    .expect(200)
-    .end((err, res) => {
-
-        
-
-        
-        assert.error(err, 'no error')
-        assert.end()
-    })
-})
 
 /*
 
