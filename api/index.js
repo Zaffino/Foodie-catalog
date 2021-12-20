@@ -1,6 +1,37 @@
 var Express = require("express");
 var app = Express();
 
+const swaggerJsDoc = require ('swagger-jsdoc');
+const swaggerUi = require ('swagger-ui-express');
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0' ,
+        info: {
+            title: "Foodie Catalog API",
+            version: "0.1.0",
+            description: "API dell'applicativo Foodie Catalog",
+            contact: {
+                name:"G09",
+                url: 'http://localhost:49146/',
+            },
+        },
+        servers: [
+            {
+                url: 'http://localhost:49146/',
+                description: 'Server di test in locale',
+            },
+        ],
+        
+    },
+    apis: ["index.js"]
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+
 var fs = require('fs');
 
 var cors = require('cors')
@@ -22,6 +53,38 @@ app.listen(49146, () => {
 // API per il menu.json
 
 // GET API per prendere  il menu
+/**
+ * @swagger
+ * /api/menu:
+ *  get:
+ *      summary: Estrazione di tutti i menu
+ *      description: Estrazione di una lista di menu dal file menu.json sul server in locale 
+ *      responses:
+ *          200:
+ *              description: Una lista di menu
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              data:
+ *                                  type: array
+ *                                  items:
+ *                                      type: object
+ *                                      properties:
+ *                                          menuID:
+ *                                              type: integer
+ *                                              description: Il numero identificativo del menu
+ *                                              example: 1
+ *                                          menuType:
+ *                                              type: string
+ *                                              description: La tipologia di menu, scelta tra "table" e "take away"
+ *                                              example: "take away"
+ *                                          menuList:
+ *                                              type: object Array
+ *                                              description: La lista dei piatti contenuti nel menu
+ *                                              example : example text
+ */
 app.get('/api/menu', (request, response) => {
 
     console.log('API GET MENU');
@@ -35,6 +98,32 @@ app.get('/api/menu', (request, response) => {
 });
 
 // API di POST per aggiungere un elemento al menu.json
+/** 
+ * @swagger
+ * /api/menu/:MenuID:
+ *  post:
+ *      summary: Creazione di un nuovo menu
+ *      description: Creazione di un nuovo oggetto dello stesso formato di quelli presenti in menu.json
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          menuType:
+ *                              type: string
+ *                              description: La tipologia di menu, scelta tra "table" e "take away"
+ *                              example: "take away"
+ *                          menuList:
+ *                              type: object Array
+ *                              description: La lista dei piatti contenuti nel menu
+ *                              example : [{"piattoID": 0,"name": "vellutata misteriosa","prezzo": 10.50,"image": "../images/logo.png","descrizione": "vellutata della mensa, gg ez sei avvelenato"}]
+ *      responses:
+ *          200:
+ *              description: 'elemento aggiunto'
+ *
+*/
 app.post('/api/menu/:MenuID', (request,response)=>{
     console.log('API POST MENU');
 
@@ -66,6 +155,7 @@ app.post('/api/menu/:MenuID', (request,response)=>{
 });
 
 // API di POST per aggiungere un piatto ad un menu in menu.json
+
 app.post('/api/piatto/:PiattoID', (request, response) =>{
     console.log('API POST PIATTO');
 
@@ -111,6 +201,7 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
 })
 
 // API di DELETE per togliere un elemento dal menu.json
+
 app.delete('/api/menu/:MenuID', (request, response) => {
     console.log('API DELETE MENU');
 
@@ -132,6 +223,10 @@ app.delete('/api/menu/:MenuID', (request, response) => {
 
     response.json('Eliminazione effetuata: ()'); 
 });
+
+//API di DELETE per togliere un piatto da un menu
+
+
 
 app.delete('/api/piatto/:PiattoID', (request,response) => {
     console.log('API DELETE PIATTO');
@@ -156,6 +251,7 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
 // API per il dipendenti.json
 
 // API di GET per la conferma del dipendente
+
 app.get('/api/dipendenti', (request, response) => {
     console.log('API GET DIPENDENTI');
 
@@ -177,6 +273,7 @@ app.get('/api/dipendenti', (request, response) => {
 });
 
 // API di POST per l'aggiunta di un dipendente
+
 app.post('/api/dipendenti',(request,response)=>{
     console.log('API POST DIPENTENTI');
 
@@ -207,6 +304,7 @@ app.post('/api/dipendenti',(request,response)=>{
 
 // API di DELETE per rimuovere un dipendente
 
+
 app.delete('/api/dipendenti',(request, response) => {
     console.log('API DELETE WORKERS');
 
@@ -230,23 +328,6 @@ app.delete('/api/dipendenti',(request, response) => {
 
 
 
-const swaggerJsDoc = require ('swagger-jsdoc');
-const swaggerUi = require ('swagger-ui-express');
 
-const swaggerOptions = {
-    swaggerDefinition: {
-        info: {
-            title: "Foodie Catalog API",
-            contact: {
-                name:"G09"
-            },
-            servers: ["http://localhost:49146/"]
-        }
-    },
-    apis: ["index.js"]
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 module.exports = app;
