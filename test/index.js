@@ -25,7 +25,7 @@ test('POST piatto' , (assert) => {
 
 test('POST piatto', (assert) => {
 
-    request(app).delete('/api/piatto/:PiattoID')
+    request(app).post('/api/piatto/:PiattoID')
     .send({'menuID' : 1, 'name' : 'porridge', 'prezzo' : 6.75, 'image' : './ui/image/sbocco.png', 'descrizione' : 'fatto dagli inglesi'})
     .expect(200)
     .end((err,res) =>{

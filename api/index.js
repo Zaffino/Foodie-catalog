@@ -75,12 +75,15 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
     var maxID=-1;
 
     var requestID = request.body['menuID'];
-
+    
     for(let[i,menu] of myObject.menu.entries()){
         if(myObject.menu[i].menuID == requestID){
-            for(let[j,piatto] in myObject.menu[i].menuList.entries()){
+            for(let[j,piatto] in myObject.menu[i].menuList){
+                
                 if(maxID < myObject.menu[i].menuList[j].piattoID){
+                    
                     maxID = myObject.menu[i].menuList[j].piattoID;
+                    
                 }
             }
         }
@@ -94,10 +97,12 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
         "descrizione": request.body['descrizione']
     };
     
-    myObject.menu.push(newPiatto);
+    
 
+    myObject.menu[requestID].menuList.push(newPiatto);
+    console.log(JSON.stringify(myObject))
     var newData = JSON.stringify(myObject);
-    fs.writeFile('menu.json', newData, err => {
+    fs.writeFile('./api/menu.json', newData, err => {
         if (err) throw err; 
     });
 
