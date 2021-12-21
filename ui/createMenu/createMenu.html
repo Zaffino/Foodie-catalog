@@ -5,9 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../style.css">
+  <script src="createMenu.js"></script>
   <title>Creazione di un nuovo menu</title>
 </head>
 <body>
+  <!--direi 2 bottoni-->
 
+  <button onclick="add()">aggiungi</button>
+  <button onclick="changeType()">takeaway</button>
+
+  <div id = "root">
+    <div id="div_1">
+      nome: <input type="text" id="name_1">
+      prezzo: <input type="text" id="price_1">
+      <br>
+      descrizione: <textarea id="description_1" rows="5"></textarea>
+      immagine: <input type="file" id="image_1">
+      <br><button onclick="rimuovi(1)">rimuovi</button>
+    </div>
+    <div id="div_2">
+      nome: <input type="text" id="name_2">
+      prezzo: <input type="text" id="price_2">
+      <br>
+      descrizione: <textarea id="description_2" rows="5"></textarea>
+      immagine: <input type="file" id="image_2">
+      <br><button onclick="rimuovi(2)">rimuovi</button>
+    </div>
+  </div>
+  <button onclick="prova()">fine</button>
 </body>
 </html>
