@@ -1,12 +1,7 @@
-var test = require('tape');
-var request = require('supertest');
-var app = require('../api');
-const { json, send } = require('express/lib/response');
-
 // test GET API per prendere il menu
 test('GET menu', (assert) => {
     request(app)
-        .get('/api/menu')
+        .get('/api/menu?test=true')
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
@@ -76,4 +71,3 @@ test('GET menu', (assert) => {
         });
         
   });
-  

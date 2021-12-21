@@ -1,6 +1,6 @@
 test('GET dipendenti', (assert) => {
   request(app)
-      .get('/api/dipendenti')
+      .get('/api/dipendenti?test=true')
       .send({"name": "zebra a strisce nere", "password": "hashpass2"})
       .expect(200)
       .end((err, res) => {

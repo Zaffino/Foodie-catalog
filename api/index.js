@@ -487,7 +487,7 @@ app.post('/api/dipendenti',(request,response)=>{
 
     for(let[i,dipendente] of myObject.workers.entries()){
         if(myObject.workers[i].ID>maxID){
-            maxID = dipendente.MenuID;
+            maxID = dipendente.ID;
         }
     }
 
@@ -497,7 +497,7 @@ app.post('/api/dipendenti',(request,response)=>{
         "password": request.body['password']
     };
 
-    myObject.menu.push(newWorker);
+    myObject.workers.push(newWorker);
 
     var newData = JSON.stringify(myObject);
     fs.writeFile(pathWorkers, newData, err => {
@@ -540,7 +540,7 @@ app.delete('/api/dipendenti',(request, response) => {
         pathWorkers = './api/dipendenti.json';
     }
 
-    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
+    var data = fs.readFileSync(pathWorkers); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var requestID = request.body['ID'];

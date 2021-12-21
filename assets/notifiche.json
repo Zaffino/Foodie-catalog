@@ -1,0 +1,11 @@
+{
+  "notifiche":[{
+    "ID" : 0,
+    "text" : "diamo una pizza gratis a chi ha mangiato 100 pizze questo mese, cioè nessuno SFIGATI AHAH"
+  },
+  {
+    "ID" : 1,
+    "text" : "notifica di prova con id = 1"
+  }
+]
+}
