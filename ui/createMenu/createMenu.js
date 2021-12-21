@@ -80,10 +80,14 @@ function prova(params) {
       if(i!=0){
         jsonReq += ",\n";
       }
-      jsonReq += '{"id" : ' + i + ','; 
-      jsonReq += '"name": "'+ document.getElementById("name_" + idValue).value + '",';
-      jsonReq += '"price": '+ document.getElementById("price_" + idValue).value + ',';
-      jsonReq += '"description": "'+ document.getElementById("description_" + idValue).value + '"}';
+      let temp = document.getElementById("image_" + idValue).value;
+      temp = temp.replace(/\\/g,"/"); //maledetti castelli di carta e spaghetti vari
+      console.log(temp)
+      jsonReq += '{"id" : ' + i + ','
+      jsonReq += '"name": "'+ document.getElementById("name_" + idValue).value + '",'
+      jsonReq += '"price": '+ document.getElementById("price_" + idValue).value + ','
+      jsonReq += '"image": "'+ temp + '",' //document.getElementById("image_" + idValue).value
+      jsonReq += '"description": "'+ document.getElementById("description_" + idValue).value + '"}'
 
       
       i++;
@@ -101,14 +105,22 @@ function prova(params) {
 
   jsonReq += '\n]\n}' 
 
-  jsonReq = JSON.parse(jsonReq)
+  PARSEDjsonReq = JSON.parse(jsonReq)
 
-  console.log(jsonReq)
+  console.log(PARSEDjsonReq)
   //console.log(JSON.parse(jsonReq))
 
 
 
 }
+
+function provaimm(params) {
+  let imm = document.getElementById('image_1')
+
+  console.log (imm.value)
+
+}
+
 
 function postMenu(){
   var request = new XMLHttpRequest();
@@ -131,9 +143,13 @@ function postMenu(){
 
         if(i!=0)  jsonReq += ",\n";
         
+        let temp = document.getElementById("image_" + idValue).value;
+        temp = temp.replace(/\\/g,"/"); //maledetti castelli di carta e spaghetti vari
+
         jsonReq += '{"id" : ' + i + ','; 
         jsonReq += '"name": "'+ document.getElementById("name_" + idValue).value + '",';
         jsonReq += '"price": '+ document.getElementById("price_" + idValue).value + ',';
+        jsonReq += '"image": "'+ temp + '",';  //document.getElementById("image_" + idValue).value
         jsonReq += '"description": "'+ document.getElementById("description_" + idValue).value + '"}';
       
         i++;
