@@ -1,27 +1,19 @@
 // file di test per eventuali errori di indentazione per le stringhe per Swagger
 
-/api/dipendenti:
+/api/menu:
  *  get:
- *      summary: Estrazione un dipendente
- *      description: Estrazione di un dipendente dal file dipendenti.json dati username e password
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
- *                          properties:
- *                              name:
- *                                  type: string
- *                                  description: Il nome del dipendente.
- *                                  example: Mariangingiangiongiangingiongiangiola
- *                              password:
- *                                  type: string
- *                                  description: La password del dipendente.
- *                                  example: QwErTy<3TaRaNtInO
+ *      summary: Estrazione di tutti i menu
+ *      description: Estrazione di una lista di menu dal file menu.json sul server in locale 
+ *      parameters:
+ *        - in: query
+ *          name: test
+ *          schema:
+ *              type:string
+ *          required: false
+ *          description: Deve essere = true quando si sta eseguendo un test con tape.
  *      responses:
  *          200:
- *              description: 
+ *              description: Una lista di menu
  *              content:
  *                  application/json:
  *                      schema:
@@ -32,7 +24,15 @@
  *                                  items:
  *                                      type: object
  *                                      properties:
- *                                          ID:
+ *                                          menuID:
  *                                              type: integer
- *                                              description: Il numero identificativo del dipendente
- *                                              example: 3
+ *                                              description: Il numero identificativo del menu
+ *                                              example: 1
+ *                                          menuType:
+ *                                              type: string
+ *                                              description: La tipologia di menu, scelta tra "table" e "take away"
+ *                                              example: "take away"
+ *                                          menuList:
+ *                                              type: object Array
+ *                                              description: La lista dei piatti contenuti nel menu
+ *                                              example : example text

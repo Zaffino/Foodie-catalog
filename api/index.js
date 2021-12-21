@@ -82,7 +82,19 @@ app.listen(49146, () => {
  *                                          menuList:
  *                                              type: object Array
  *                                              description: La lista dei piatti contenuti nel menu
- *                                              example : example text
+ *                                              example :  [{
+ *			"piattoID": 0,
+ *			"name": "vellutata misteriosa",
+ *			"prezzo": 10.5,
+ *			"image": "../images/logo.png",
+ *			"descrizione": "vellutata della mensa, gg ez sei avvelenato"
+ *		}, {
+ *			"piattoID": 1,
+ *			"name": "pizza con ananas",
+ *			"prezzo": 10.5,
+ *			"image": "../images/logo.png",
+ *			"descrizione": "non ancora riconosciuta ufficialmente come pizza"
+ *		}]
  */
 app.get('/api/menu', (request, response) => {
 
