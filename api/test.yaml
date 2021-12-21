@@ -1,0 +1,38 @@
+// file di test per eventuali errori di indentazione per le stringhe per Swagger
+
+/api/dipendenti:
+ *  get:
+ *      summary: Estrazione un dipendente
+ *      description: Estrazione di un dipendente dal file dipendenti.json dati username e password
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                          properties:
+ *                              name:
+ *                                  type: string
+ *                                  description: Il nome del dipendente.
+ *                                  example: Mariangingiangiongiangingiongiangiola
+ *                              password:
+ *                                  type: string
+ *                                  description: La password del dipendente.
+ *                                  example: QwErTy<3TaRaNtInO
+ *      responses:
+ *          200:
+ *              description: 
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              data:
+ *                                  type: array
+ *                                  items:
+ *                                      type: object
+ *                                      properties:
+ *                                          ID:
+ *                                              type: integer
+ *                                              description: Il numero identificativo del dipendente
+ *                                              example: 3

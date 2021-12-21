@@ -6,7 +6,7 @@ test('GET dipendenti', (assert) => {
       .end((err, res) => {
           
           assert.error(err, 'No error');
-          assert.same(res.text, '1', 'res.text as expected' )
+          assert.same(res.text, 1, 'res.text as expected' )
           
           assert.end();
       });

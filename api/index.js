@@ -155,7 +155,44 @@ app.post('/api/menu/:MenuID', (request,response)=>{
 });
 
 // API di POST per aggiungere un piatto ad un menu in menu.json
-
+/** 
+ * @swagger
+ * /api/piatto/:PiattoID:
+ *  post:
+ *      summary: Aggiunta di un piatto
+ *      description: Aggiunta di un piatto ad un menu preesistente all'interno di menu.json
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          menuID:
+ *                              type: integer
+ *                              description: Il numero identificativo del menu
+ *                              example: 1
+ *                          name:
+ *                              type: string
+ *                              description: Il nome del piatto
+ *                              example: zuppa di tartaruga
+ *                          price:
+ *                              type: float
+ *                              description: Il prezzo del piatto, espresso in euro
+ *                              example: 10,45
+ *                          image:
+ *                              type: string
+ *                              description: Il path assoluto per accedere all'immagine del piatto
+ *                              example: ./ui/image/logo.png
+ *                          descrizione:
+ *                              type: string
+ *                              description: La descrizione dettagliata del piatto
+ *                              example: Nessun animale diverso da una tartaruga dalle guancie rosse è stata maltrattata durante la produzione di questo programma
+ *      responses:
+ *          200:
+ *              description: 'elemento aggiunto'
+ *
+*/
 app.post('/api/piatto/:PiattoID', (request, response) =>{
     console.log('API POST PIATTO');
 
@@ -196,11 +233,33 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
         if (err) throw err; 
     });
 
-    response.json('Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')');
+    response.json('elemento aggiunto');
 
 })
 
 // API di DELETE per togliere un elemento dal menu.json
+
+/**
+ * @swagger
+ * /api/menu/:MenuID:
+ *  delete:
+ *      summary: Eliminazione di un menu.
+ *      description: Eliminazione di un menu dal file menu.json
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          menuID:
+ *                              type: integer
+ *                              description: Il numero identificativo del menu
+ *                              example: 1
+ *      responses:
+ *          200:
+ *              description: Eliminazione effettuata
+ */
 
 app.delete('/api/menu/:MenuID', (request, response) => {
     console.log('API DELETE MENU');
@@ -221,12 +280,36 @@ app.delete('/api/menu/:MenuID', (request, response) => {
         if (err) throw err; 
     });
 
-    response.json('Eliminazione effetuata: ()'); 
+    response.json('Eliminazione effetuata'); 
 });
 
 //API di DELETE per togliere un piatto da un menu
 
-
+/**
+ * @swagger
+ * /api/piatto/:PiattoID:
+ *  delete:
+ *      summary: Eliminazione di un piatto.
+ *      description: Eliminazione di un piatto, da uno specifico menu in menu.json
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          menuID:
+ *                              type: integer
+ *                              description: Il numero identificativo del menu
+ *                              example: 1
+ *                          piattoID:
+ *                              type: integer
+ *                              description: Il numero identificativo di un piatto all'interno di un menu
+ *                              example: 3
+ *      responses:
+ *          200:
+ *              description: Eliminazione effettuata
+ */
 
 app.delete('/api/piatto/:PiattoID', (request,response) => {
     console.log('API DELETE PIATTO');
@@ -246,11 +329,52 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
             }
         }
     }
+    var newData = JSON.stringify(myObject);
+    fs.writeFile('./api/menu.json', newData, err => {
+        if (err) throw err; 
+    });
+
+    response.json('Eliminazione effetuata'); 
 })
 
 // API per il dipendenti.json
 
 // API di GET per la conferma del dipendente
+
+/**
+ * @swagger
+ * /api/dipendenti:
+ *  get:
+ *      summary: Estrazione un dipendente
+ *      description: Estrazione di un dipendente dal file dipendenti.json dati username e password
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          name:
+ *                              type: string
+ *                              description: Il nome del dipendente.
+ *                              example: Mariangingiangiongiangingiongiangiola
+ *                          password:
+ *                              type: string
+ *                              description: La password del dipendente.
+ *                              example: QwErTy<3TaRaNtInO
+ *      responses:
+ *          200:
+ *              description: 
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              ID:
+ *                                  type: integer
+ *                                  description: Il numero identificativo del dipendente
+ *                                  example: 3
+ */
 
 app.get('/api/dipendenti', (request, response) => {
     console.log('API GET DIPENDENTI');
@@ -269,10 +393,36 @@ app.get('/api/dipendenti', (request, response) => {
         }
     }
 
-    response.send(myResponse.toString());
+    response.send(myResponse);
 });
 
 // API di POST per l'aggiunta di un dipendente
+
+/** 
+@swagger
+ * /api/dipendenti:
+ *  post:
+ *      summary: Aggiunta di un dipendente
+ *      description: Aggiunta di un dipendente al dipendenti.json
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          name:
+ *                              type: string
+ *                              description: Il nome del dipendente
+ *                              example: Arrotino
+ *                          password:
+ *                              type: string
+ *                              description: La password del dipendente
+ *                              example: TrEnTa2TrEnTin1
+ *      responses:
+ *          200:
+ *              description: 'elemento aggiunto'
+ */
 
 app.post('/api/dipendenti',(request,response)=>{
     console.log('API POST DIPENTENTI');
@@ -300,10 +450,33 @@ app.post('/api/dipendenti',(request,response)=>{
     fs.writeFile('menu.json', newData, err => {
         if (err) throw err; 
     });
+
+    response.json('elemento aggiunto');
 });
 
 // API di DELETE per rimuovere un dipendente
 
+/**
+ * @swagger
+ * /api/dipendenti:
+ *  delete:
+ *      summary: Eliminazione di un dipendente .
+ *      description: Eliminazione di un dipendente dal dipendenti.json (anche noto come licenziamento)
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          ID:
+ *                              type: integer
+ *                              description: Il numero identificativo del dipendente
+ *                              example: 1
+ *      responses:
+ *          200:
+ *              description: Eliminazione effettuata
+ */
 
 app.delete('/api/dipendenti',(request, response) => {
     console.log('API DELETE WORKERS');
@@ -323,7 +496,7 @@ app.delete('/api/dipendenti',(request, response) => {
         if (err) throw err; 
     });
 
-    response.json('Eliminazione effetuata: ('+ myObject.workers.lenght + ')');
+    response.json('Eliminazione effetuata');
 })
 
 
