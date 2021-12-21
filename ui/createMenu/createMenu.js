@@ -101,8 +101,10 @@ function prova(params) {
 
   jsonReq += '\n]\n}' 
 
+  jsonReq = JSON.parse(jsonReq)
+
   console.log(jsonReq)
-  console.log(JSON.parse(jsonReq))
+  //console.log(JSON.parse(jsonReq))
 
 
 
@@ -111,8 +113,43 @@ function prova(params) {
 function postMenu(){
   var request = new XMLHttpRequest();
   request.open('POST', 'http://localhost:49146/api/menu/:MenuID', true);
-  request.onload(() => {
-    
-  }) 
+  request.setRequestHeader('Content-Type', 'application/json');
+    jsonReq ='{\n"menuType" : "' + tipoMenu +'",\n';
+    jsonReq += '"menuList" : [\n';
 
+    let i = 0;
+    const root = document.getElementById('root')
+    for (const key in root.children) {
+      
+      //console.log(root.children[key]);
+      let idValue;
+      try {
+        idValue = root.children[key].getAttribute('id');
+        idValue = idValue.substring(4, idValue.length);
+        idValue = parseInt(idValue)
+        console.log(idValue)
+
+        if(i!=0)  jsonReq += ",\n";
+        
+        jsonReq += '{"id" : ' + i + ','; 
+        jsonReq += '"name": "'+ document.getElementById("name_" + idValue).value + '",';
+        jsonReq += '"price": '+ document.getElementById("price_" + idValue).value + ',';
+        jsonReq += '"description": "'+ document.getElementById("description_" + idValue).value + '"}';
+      
+        i++;
+        //console.log(root.children[key].getAttribute('id'))
+      } catch (error){
+        console.log('error')
+      } 
+
+    }
+
+    jsonReq += '\n]\n}' 
+    
+    request.send(jsonReq)
+    
+    //jsonReq = JSON.parse(jsonReq)
+    console.log(jsonReq)
+   
+    
 }
