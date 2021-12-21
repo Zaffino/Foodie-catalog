@@ -1,5 +1,19 @@
 
 var numeroPiatti = 3;
+var tipoMenu = "take away"
+
+function changeType(){
+  if(tipoMenu == "take away")
+    tipoMenu = "tavolo"
+  else tipoMenu = "take away"
+
+  console.log('tipo = ' + tipoMenu)
+
+  document.getElementById('buttonType').innerText = tipoMenu
+
+
+}
+
 
 function add(params) {
   const mainDiv = document.getElementById('root');
@@ -46,27 +60,59 @@ function rimuovi(id) {
 
 function prova(params) {
 
-  let jsonReq;
+  jsonReq ='{\n"menuType" : "' + tipoMenu +'",\n';
+  jsonReq += '"menuList" : [\n';
+
+  let i = 0;
   const root = document.getElementById('root')
   for (const key in root.children) {
-    console.log(root.children[key]);
-    for (const field in key.children) {
-      console.log(key.children[field])
+    //console.log(root.children[key]);
+    let idValue;
+
+
+
+    try {
+      idValue = root.children[key].getAttribute('id');
+      idValue = idValue.substring(4, idValue.length);
+      idValue = parseInt(idValue)
+      console.log(idValue)
+
+      if(i!=0){
+        jsonReq += ",\n";
+      }
+      jsonReq += '{"id" : ' + i + ','; 
+      jsonReq += '"name": "'+ document.getElementById("name_" + idValue).value + '",';
+      jsonReq += '"price": '+ document.getElementById("price_" + idValue).value + ',';
+      jsonReq += '"description": "'+ document.getElementById("description_" + idValue).value + '"}';
+
+      
+      i++;
+      //console.log(root.children[key].getAttribute('id'))
+    } catch (error) {
+      console.log('nada')
+      //console.log(error)
     }
+
+    
+    
+
+
   }
+
+  jsonReq += '\n]\n}' 
+
+  console.log(jsonReq)
+  console.log(JSON.parse(jsonReq))
+
+
+
 }
 
 function postMenu(){
   var request = new XMLHttpRequest();
   request.open('POST', 'http://localhost:49146/api/menu/:MenuID', true);
   request.onload(() => {
-    for (const key in document.getElementById('root')) { //??????
-      if (Object.hasOwnProperty.call(object, key)) {
-        const element = object[key];
-        
-      }
-
-    }
+    
   }) 
 
 }
