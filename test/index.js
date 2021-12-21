@@ -3,6 +3,8 @@ var request = require('supertest');
 var app = require('../api');
 const { json } = require('express/lib/response');
 
+// WATCH OUT -> quando viene eseguito un test assicurarsi di aggiungere ?test=true al url
+
 /*
 test('POST piatto' , (assert) => {
     //var postJSONpiatto = 'errore ez'; //dovrebbe dare errore
@@ -54,9 +56,9 @@ test('DELETE piatto', (assert) => {
 })
 
 */
-test('GET menu', (assert) => {
+/*test('GET menu', (assert) => {
     request(app)
-        .get('/api/menu')
+        .get('/api/menu?test=true')
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
@@ -125,5 +127,5 @@ test('GET menu', (assert) => {
             assert.end();
         });
         
-  });
+  });*/
   

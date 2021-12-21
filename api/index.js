@@ -47,7 +47,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(49146, () => {
     console.log("APIs Running");
 
-
 });
 
 // API per il menu.json
@@ -88,7 +87,13 @@ app.listen(49146, () => {
 app.get('/api/menu', (request, response) => {
 
     console.log('API GET MENU');
-    var data = fs.readFileSync('./api/menu.json'); //era necessario specificare la cartella del file json
+    var pathMenu = 'menu.json';
+
+    if(request.query.test == 'true'){
+        pathMenu = './api/menu.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     
     var myObject = JSON.parse(data);
     response.send(myObject);
@@ -127,7 +132,13 @@ app.get('/api/menu', (request, response) => {
 app.post('/api/menu/:MenuID', (request,response)=>{
     console.log('API POST MENU');
 
-    var data = fs.readFileSync('./api/menu.json');
+    var pathMenu = 'menu.json';
+
+    if(request.query.test == 'true'){
+        pathMenu = './api/menu.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -147,7 +158,7 @@ app.post('/api/menu/:MenuID', (request,response)=>{
     myObject.menu.push(newMenu);
 
     var newData = JSON.stringify(myObject);
-    fs.writeFile('./api/menu.json', newData, err => {
+    fs.writeFile(pathMenu, newData, err => {
         if (err) throw err; 
     });
     //'Menu aggiunto correttamente con ID:'+ (maxID+1) +' new lenght: ('+ myObject.menu.lenght + ')'
@@ -196,7 +207,13 @@ app.post('/api/menu/:MenuID', (request,response)=>{
 app.post('/api/piatto/:PiattoID', (request, response) =>{
     console.log('API POST PIATTO');
 
-    var data = fs.readFileSync('./api/menu.json');
+    var pathMenu = 'menu.json';
+
+    if(request.query.test == 'true'){
+        pathMenu = './api/menu.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -229,7 +246,7 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
     myObject.menu[requestID].menuList.push(newPiatto);
     console.log(JSON.stringify(myObject))
     var newData = JSON.stringify(myObject);
-    fs.writeFile('./api/menu.json', newData, err => {
+    fs.writeFile(pathMenu, newData, err => {
         if (err) throw err; 
     });
 
@@ -264,7 +281,13 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
 app.delete('/api/menu/:MenuID', (request, response) => {
     console.log('API DELETE MENU');
 
-    var data = fs.readFileSync('./api/menu.json');
+    var pathMenu = 'menu.json';
+
+    if(request.query.test == 'true'){
+        pathMenu = './api/menu.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     toCheckID = request.body['menuID'];
@@ -276,7 +299,7 @@ app.delete('/api/menu/:MenuID', (request, response) => {
     }
 
     var newData = JSON.stringify(myObject);
-    fs.writeFile('./api/menu.json', newData, err => {
+    fs.writeFile(pathMenu, newData, err => {
         if (err) throw err; 
     });
 
@@ -314,7 +337,13 @@ app.delete('/api/menu/:MenuID', (request, response) => {
 app.delete('/api/piatto/:PiattoID', (request,response) => {
     console.log('API DELETE PIATTO');
 
-    var data = fs.readFileSync('./api/menu.json');
+    var pathMenu = 'menu.json';
+
+    if(request.query.test == 'true'){
+        pathMenu = './api/menu.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var menuRequest = request.body['menuID']; 
@@ -330,7 +359,7 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
         }
     }
     var newData = JSON.stringify(myObject);
-    fs.writeFile('./api/menu.json', newData, err => {
+    fs.writeFile(pathMenu, newData, err => {
         if (err) throw err; 
     });
 
@@ -379,7 +408,13 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
 app.get('/api/dipendenti', (request, response) => {
     console.log('API GET DIPENDENTI');
 
-    var data = fs.readFileSync('./api/dipendenti.json');
+    var pathWorkers = 'dipendenti.json';
+
+    if(request.query.test == 'true'){
+        pathWorkers = './api/dipendenti.json';
+    }
+
+    var data = fs.readFileSync(pathWorkers); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var myResponse = -1;
@@ -427,7 +462,13 @@ app.get('/api/dipendenti', (request, response) => {
 app.post('/api/dipendenti',(request,response)=>{
     console.log('API POST DIPENTENTI');
 
-    var data = fs.readFileSync('./api/dipendenti.json');
+    var pathWorkers = 'dipendenti.json';
+
+    if(request.query.test == 'true'){
+        pathWorkers = './api/dipendenti.json';
+    }
+
+    var data = fs.readFileSync(pathWorkers); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var maxID=-1;
@@ -447,7 +488,7 @@ app.post('/api/dipendenti',(request,response)=>{
     myObject.menu.push(newWorker);
 
     var newData = JSON.stringify(myObject);
-    fs.writeFile('menu.json', newData, err => {
+    fs.writeFile(pathWorkers, newData, err => {
         if (err) throw err; 
     });
 
@@ -481,7 +522,13 @@ app.post('/api/dipendenti',(request,response)=>{
 app.delete('/api/dipendenti',(request, response) => {
     console.log('API DELETE WORKERS');
 
-    var data = fs.readFileSync('./api/dipendenti.json');
+    var pathWorkers = 'dipendenti.json';
+
+    if(request.query.test == 'true'){
+        pathWorkers = './api/dipendenti.json';
+    }
+
+    var data = fs.readFileSync(pathMenu); //era necessario specificare la cartella del file json
     var myObject = JSON.parse(data);
 
     var requestID = request.body['ID'];
@@ -492,7 +539,7 @@ app.delete('/api/dipendenti',(request, response) => {
         }
     }
     var newData = JSON.stringify(myObject);
-    fs.writeFile('dipendenti.json', newData, err => {
+    fs.writeFile(pathWorkers, newData, err => {
         if (err) throw err; 
     });
 

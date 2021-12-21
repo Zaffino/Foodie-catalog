@@ -42,12 +42,6 @@
 			"prezzo": 10.5,
 			"image": "../images/logo.png",
 			"descrizione": "l'unico piatto rosa a nostra disposizione. Servito freddo."
-		}, {
-			"piattoID": 4,
-			"name": "porridge",
-			"prezzo": 6.75,
-			"image": "./ui/image/sbocco.png",
-			"descrizione": "fatto dagli inglesi"
 		}]
 	}]
 }
