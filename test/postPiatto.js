@@ -5,6 +5,8 @@ test('POST piatto', (assert) => {
     .expect(200)
     .end((err,res) =>{
         assert.error(err,'no errors')
+        assert.pass('passed')
+        assert.comment(res.body)
         assert.end()
     })
 })

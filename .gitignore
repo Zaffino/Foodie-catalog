@@ -1,6 +1,4 @@
 node_modules/*
 images/*
-api/menu.json
-api/dipendenti.json
-api/notifiche.json
+
 package-lock.json
