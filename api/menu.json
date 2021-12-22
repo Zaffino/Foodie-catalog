@@ -43,5 +43,22 @@
 			"image": "../images/logo.png",
 			"descrizione": "l'unico piatto rosa a nostra disposizione. Servito freddo."
 		}]
+	},
+	{
+		"menuID": 2,
+		"menuType": "table",
+		"menuList": [{
+			"piattoID": 0,
+			"name": "vellutata misteriosa",
+			"prezzo": 10.5,
+			"image": "../images/logo.png",
+			"descrizione": "vellutata della mensa, gg ez sei avvelenato"
+		}, {
+			"piattoID": 1,
+			"name": "pizza con ananas",
+			"prezzo": 10.5,
+			"image": "../images/logo.png",
+			"descrizione": "non ancora riconosciuta ufficialmente come pizza"
+		}]
 	}]
 }
