@@ -413,7 +413,7 @@ app.delete('/api/piatto/:PiattoID', (request,response) => {
  *                          properties:
  *                              ID:
  *                                  type: integer
- *                                  description: Il numero identificativo del dipendente
+ *                                  description: Il numero identificativo del dipendente. Nel caso il dipendente non sia presente verrà restituito -1
  *                                  example: 3
  */
 
@@ -431,8 +431,8 @@ app.get('/api/dipendenti', (request, response) => {
 
     var myResponse = -1;
 
-    var requestName = request.body['name'];
-    var requestPassword = request.body['password'];
+    var requestName = request.query.name;
+    var requestPassword = request.query.password;
 
     for(let[i,dipendente] of myObject.workers.entries()){
         if((dipendente.name == requestName)&&(dipendente.password == requestPassword)){
@@ -440,7 +440,7 @@ app.get('/api/dipendenti', (request, response) => {
         }
     }
 
-    response.send(myResponse);
+    response.send(myResponse.toString());
 });
 
 // API di POST per l'aggiunta di un dipendente
