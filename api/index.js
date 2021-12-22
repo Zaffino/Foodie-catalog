@@ -256,7 +256,7 @@ app.post('/api/piatto/:PiattoID', (request, response) =>{
     
 
     myObject.menu[requestID].menuList.push(newPiatto);
-    console.log(JSON.stringify(myObject))
+    //console.log(JSON.stringify(myObject))
     var newData = JSON.stringify(myObject);
     fs.writeFile(pathMenu, newData, err => {
         if (err) throw err; 
